@@ -2,7 +2,7 @@ import { motion, useScroll } from "framer-motion";
 import React, { useRef } from "react";
 import LiIcon from "./LiIcon";
 
-const Details = ({ position, company, companyLink, time, address, work }) => {
+const Details = ({ type, time, place, info }) => {
   const ref = useRef(null);
   return (
     <li
@@ -15,26 +15,17 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
         whileInView={{ y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
       >
-        <h3 className="capitalize font-bold text-2xl">
-          {position}&nbsp;
-          <a
-            href={companyLink}
-            target="_blank"
-            className="text-primary capitalize"
-          >
-            @{company}
-          </a>
-        </h3>
+        <h3 className="capitalize font-bold text-2xl">{type}</h3>
         <span className="capitalize font-medium text-dark/75">
-          {time} | {address}
+          {time} | {place}
         </span>
-        <p className="font-medium w-full">{work}</p>
+        <p className="font-medium w-full">{info}</p>
       </motion.div>
     </li>
   );
 };
 
-const Experience = () => {
+const Education = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -42,9 +33,7 @@ const Experience = () => {
   });
   return (
     <div className="my-64">
-      <h2 className="font-bold text-8xl mb-32 w-full text-center">
-        Experience
-      </h2>
+      <h2 className="font-bold text-8xl mb-32 w-full text-center">Education</h2>
 
       <div ref={ref} className="w-[75%] mx-auto relative">
         <motion.div
@@ -53,12 +42,16 @@ const Experience = () => {
         />
         <ul className="w-full flex flex-col items-start justify-between ml-4">
           <Details
-            position="Software Specialist"
-            company="Central 1"
-            companyLink="www.central1.com"
-            time="2023-Present"
-            address="Vancouver, BC"
-            work="Maintains, modifies, implements and supports a variety of applications on various platforms and provides support for the users of the products."
+            type="Bachelor of Technology in Computer Systems"
+            time="Sept 2018 - Dec 2020"
+            place="British Columbia Institute of Technology"
+            info="Focus in Web, Mobile, and Game Development."
+          />
+          <Details
+            type="Computer Systems (Web and Mobile) Diploma"
+            time="Jan 2016 - Dec 2017"
+            place="British Columbia Institute of Technology"
+            info="Focus in Web and Mobile Development."
           />
         </ul>
       </div>
@@ -66,4 +59,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default Education;
